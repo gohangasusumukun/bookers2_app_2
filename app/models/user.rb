@@ -8,4 +8,12 @@ class User < ApplicationRecord
   # has_manyの後には、1:Nの関係になるモデル名を複数形で記述する
 
   attachment :profile_image
+  
+  validates :name,
+  presence: true, uniqueness: true, length: { in: 2..20 }
+    # 文字数の制限を設ける→length #長さの範囲を2-20文字→in ..
+  validates :introduction,
+    length: { maximum: 50 }
+    # 長さの下限を50文字に設定→minimum
+    # presence: trueは、空欄でないことを確認している
 end
